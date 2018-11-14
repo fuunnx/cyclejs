@@ -17,7 +17,7 @@ function makeThrottleAnimation(
         let emittedLastValue = true;
         const frame$ = xs.fromObservable(source.animationFrames());
 
-        const animationListener = {
+        const frameListener = {
           next(event: any) {
             if (!emittedLastValue) {
               listener.next(lastValue);
@@ -37,12 +37,13 @@ function makeThrottleAnimation(
           },
 
           complete() {
-            frame$.removeListener(animationListener);
+            frame$.removeListener(frameListener);
             listener.complete();
           },
-        });
+        };
 
-        frame$.addListener(animationListener);
+        stream.addListener(animationListener);
+        frame$.addListener(frameListener);
       },
 
       stop() {

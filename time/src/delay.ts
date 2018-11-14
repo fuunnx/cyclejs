@@ -33,7 +33,7 @@ function makeDelay(createOperator: () => OperatorArgs<any>) {
       const stream = xs.fromObservable(inputStream);
       const producer = {
         start(listener: Listener<T>) {
-          const delayListener = makeDelayListener<T>(
+          delayListener = makeDelayListener<T>(
             schedule,
             currentTime,
             delayTime,

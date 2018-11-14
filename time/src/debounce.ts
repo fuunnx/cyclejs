@@ -51,7 +51,7 @@ function makeDebounce(createOperator: () => OperatorArgs<any>) {
 
       const debouncedStream = xs.create<T>({
         start(listener: Listener<T>) {
-          const debounceListener = makeDebounceListener<T>(
+          debounceListener = makeDebounceListener<T>(
             schedule,
             currentTime,
             debounceInterval,

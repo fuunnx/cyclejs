@@ -46,7 +46,7 @@ function makeThrottle(createOperator: () => OperatorArgs<any>) {
 
       const throttledStream = xs.create<T>({
         start(listener) {
-          const throttleListener = makeThrottleListener<T>(
+          throttleListener = makeThrottleListener<T>(
             schedule,
             currentTime,
             period,
